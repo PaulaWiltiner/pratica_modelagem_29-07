@@ -69,3 +69,16 @@ CREATE TABLE "transactions" (
 );
 
 -- CREATE creditCards
+
+CREATE TABLE "creditCards" (
+	id SERIAL PRIMARY KEY,
+	"bankAccountId" INTEGER NOT NULL,
+	name VARCHAR(30) NOT NULL,
+	number INTEGER NOT NULL,
+	"securityCode" TEXT NOT NULL,
+	"description" TEXT NOT NULL,
+	"expirationMonth" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+	"expirationYear" TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+	password TEXT NOT NULL,
+	"limit"  DOUBLE PRECISION NOT NULL
+);
