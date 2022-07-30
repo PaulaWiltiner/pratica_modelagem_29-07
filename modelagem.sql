@@ -1,0 +1,71 @@
+-- CREATE STATES
+
+CREATE TABLE "states" (
+	"id" SERIAL PRIMARY KEY,
+	"name" TEXT UNIQUE NOT NULL
+);
+
+-- CREATE CITIES
+
+CREATE TABLE "cities" (
+	"id" SERIAL PRIMARY KEY,
+	"name" TEXT UNIQUE NOT NULL,
+	"stateId" INTEGER NOT NULL;
+);
+
+-- CREATE costumerPhones
+
+CREATE TABLE "customerPhones" (
+	id SERIAL PRIMARY KEY,
+	"customerId" INTEGER NOT NULL,
+	number TEXT NOT NULL,
+	type TEXT NOT NULL
+);
+
+-- CREATE costumerAddresses
+
+CREATE TABLE "customerAddresses" (
+	id SERIAL PRIMARY KEY,
+	"customerId" INTEGER UNIQUE NOT NULL,
+	street VARCHAR(30) NOT NULL,
+	number INTEGER NOT NULL,
+	complement VARCHAR(140) NOT NULL,
+	"postalCode" BIGINT NOT NULL,
+	cityId INTEGER NOT NULL
+);
+
+-- CREATE costumers
+
+CREATE TABLE "customers" (
+	id SERIAL PRIMARY KEY,
+	"fullName" VARCHAR(40) UNIQUE NOT NULL,
+	cpf VARCHAR(20) NOT NULL,
+	email TEXT NOT NULL,
+	password TEXT NOT NULL
+);
+
+
+-- CREATE bankAccount
+
+CREATE TABLE "bankAccount" (
+	id SERIAL PRIMARY KEY,
+	"customerId" INTEGER UNIQUE NOT NULL,
+	"accountNumber" BIGINT UNIQUE NOT NULL,
+	"agency" VARCHAR(30) NOT NULL,
+	"openDate" TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT NOW(),
+	"closeDate" TIMESTAMP WITHOUT TIME ZONE NOT NULL
+);
+
+-- CREATE transactions
+
+CREATE TABLE "transactions" (
+	id SERIAL PRIMARY KEY,
+	"bankAccountId" INTEGER NOT NULL,
+	"amount" DOUBLE PRECISION NOT NULL,
+	"type" TEXT NOT NULL,
+	"time" TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT NOW(),
+	"description" TEXT NOT NULL,
+	cancelled BOOLEAN
+);
+
+-- CREATE creditCards
